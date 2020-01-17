@@ -1,16 +1,20 @@
 body, wrapper {
     min-height:100vh;
-    height:500px;
+    height:150vh;
+    border: 2px solid black;
     text-align: center;
 }
 
 nav {
     border-bottom: 2px solid black;
+    border-top: 2px solid black;
 }
 
 .jumbotron {
     background-color: rgb(175, 115, 190);
-    border: 2px solid black;
+    border: 5px solid black;
+    margin: 2px;
+    padding: 2px;
 }
 
 .display-4 {
@@ -24,9 +28,5 @@ nav {
 footer {
     text-align:center;
     border-top: 2px solid black;
-}
-
-hr {
-    border: 2px solid black;
-    width: 100%;
+    border-bottom: 2px solid black;
 }
