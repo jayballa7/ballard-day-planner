@@ -1,6 +1,6 @@
 body, wrapper {
     min-height:100vh;
-    height:150vh;
+    height:175vh;
     border: 2px solid black;
     text-align: center;
 }
@@ -23,6 +23,11 @@ nav {
 
 .lead {
     font-weight: 500;
+}
+
+.day {
+    font-size: 2.5em;
+    margin: 2%;
 }
 
 footer {
