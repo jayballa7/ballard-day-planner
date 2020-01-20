@@ -1,6 +1,5 @@
 body, wrapper {
     min-height:100vh;
-    height:175vh;
     border: 2px solid black;
     text-align: center;
 }
@@ -30,8 +29,20 @@ nav {
     margin: 2%;
 }
 
+.btn {
+    background-image: url(save-icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 footer {
     text-align:center;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
+}
+
+@media only screen and (max-width: 762px) {
+.btn, .d-inline {
+    width: 20% !important;
+    }
 }

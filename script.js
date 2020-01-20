@@ -1,11 +1,8 @@
 var hourArray = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
-
-var hours = 0;
-var hourIndex = 0;
-var hourDiv = $("<div>");
-hourDiv.addClass("d-inline p-2 bg-dark text-white");    
-
+   
+//Inserting styled timeblocks onto the page
 $(function() {
+    var hours = 0;
     var i=0;
     while (i < 9) {
         i++;
@@ -24,10 +21,8 @@ $(function() {
         hourDiv.append(p);
         var saveButton = $("<button>");
         saveButton.addClass("btn btn-primary");
-        saveButton.html("Save");
         saveButton.css("width", "10%")
         inputEl.append(hourDiv, textEl, saveButton);
         $(".container").append(inputEl);
-
     };
 });
