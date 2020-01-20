@@ -1,8 +1,27 @@
-var hourArray = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
-   
-//Inserting styled timeblocks onto the page
+//display current day
+(function() {
+  
+  var currentDay = moment().format("LL");
+  var eDisplayMoment = document.getElementById("displayMoment");
+  eDisplayMoment.textContent = currentDay;
+  
+})(); 
+
+var workHours = 24;
+var time = [];
+
+function timeOneDay(){
+    var formattedTime;
+    //start from 9am
+    for(var j = 0; j < workHours; j++){ 
+        formattedTime = (moment().subtract(j, "hours")).format("hA");  //give the time in format X AM/PM
+        time.unshift(formattedTime);  //add to beginning of array
+    }                              
+}
+timeOneDay();
+
+//create content and insert on page
 $(function() {
-    var hours = 0;
     var i=0;
     while (i < 9) {
         i++;
@@ -17,12 +36,28 @@ $(function() {
         textEl.css("height", "12vh");
         textEl.css("font-size", "xx-large");
         var p = $("<p>");
-        p = hourArray[i-1];
+        p = time[i];
         hourDiv.append(p);
         var saveButton = $("<button>");
         saveButton.addClass("btn btn-primary");
         saveButton.css("width", "10%")
         inputEl.append(hourDiv, textEl, saveButton);
         $(".container").append(inputEl);
-    };
-});
+
+        function now () {
+            var isafter = moment().isAfter(time);
+            var isbefore = moment().isBefore(time);
+            if (isafter == true) {
+                textEl.addClass("past");
+            }
+            else if (isbefore == true) {
+                textEl.addClass("future");
+            }
+            else {
+                textEl.addClass("present");
+            }
+        }
+        now();
+
+    }
+}); 
