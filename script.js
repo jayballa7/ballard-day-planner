@@ -7,7 +7,7 @@
   
 })(); 
 
-
+//create time arrays to append hours and compare time
 let time = [];
 let timeComp = [];
 
@@ -17,11 +17,8 @@ function timeOneDay () {
       timeComp.push(moment( {hour: index} ));
     })
   }
-console.log(time);
 
 timeOneDay();
-
-
 
 //create content and insert on page
 $(function() {
@@ -39,7 +36,7 @@ $(function() {
         textEl.css("height", "12vh");
         textEl.css("font-size", "xx-large");
         var p = $("<p>");
-        p = time[i + 14];
+        p = time[i + 8];
         hourDiv.append(p);
         var saveButton = $("<button>");
         saveButton.addClass("btn btn-primary");
@@ -49,18 +46,18 @@ $(function() {
 
 //hour in the past, present or future
         function now () {
-
-                var isafter = moment().isAfter(timeComp[i+14]);
-                var isbefore = moment().isBefore(timeComp[i+14]);
-                if (isafter == true && isbefore == false) {
-                    textEl.addClass("past");
-                }
-                else if (isbefore == true && isafter == false) {
-                    textEl.addClass("future");
-                }
-                else {
-                   textEl.addClass("present");
-                }
+            var currentHour = moment().format("hA");
+            var isafter = moment().isAfter(timeComp[i+8]);
+            var isbefore = moment().isBefore(timeComp[i+8]);
+            if (currentHour == time[i+8]) {
+                textEl.addClass("present");
+            }
+            else if (isafter == true && isbefore == false) {
+                textEl.addClass("past");
+            }
+            else if (isbefore == true && isafter == false) {
+                textEl.addClass("future");
+            }
         }
         now();
 
