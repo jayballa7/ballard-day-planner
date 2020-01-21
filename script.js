@@ -7,18 +7,21 @@
   
 })(); 
 
-var workHours = 24;
-var time = [];
 
-function timeOneDay(){
-    var formattedTime;
-    //start from 9am
-    for(var j = 0; j < workHours; j++){ 
-        formattedTime = (moment().subtract(j, "hours")).format("hA");  //give the time in format X AM/PM
-        time.unshift(formattedTime);  //add to beginning of array
-    }                              
-}
+let time = [];
+let timeComp = [];
+
+function timeOneDay () {
+    new Array(24).fill().forEach((acc, index) => {
+      time.push(moment( {hour: index} ).format("hA"));
+      timeComp.push(moment( {hour: index} ));
+    })
+  }
+console.log(time);
+
 timeOneDay();
+
+
 
 //create content and insert on page
 $(function() {
@@ -36,7 +39,7 @@ $(function() {
         textEl.css("height", "12vh");
         textEl.css("font-size", "xx-large");
         var p = $("<p>");
-        p = time[i];
+        p = time[i + 14];
         hourDiv.append(p);
         var saveButton = $("<button>");
         saveButton.addClass("btn btn-primary");
@@ -44,20 +47,42 @@ $(function() {
         inputEl.append(hourDiv, textEl, saveButton);
         $(".container").append(inputEl);
 
+//hour in the past, present or future
         function now () {
-            var isafter = moment().isAfter(time);
-            var isbefore = moment().isBefore(time);
-            if (isafter == true) {
-                textEl.addClass("past");
-            }
-            else if (isbefore == true) {
-                textEl.addClass("future");
-            }
-            else {
-                textEl.addClass("present");
-            }
+
+                var isafter = moment().isAfter(timeComp[i+14]);
+                var isbefore = moment().isBefore(timeComp[i+14]);
+                if (isafter == true && isbefore == false) {
+                    textEl.addClass("past");
+                }
+                else if (isbefore == true && isafter == false) {
+                    textEl.addClass("future");
+                }
+                else {
+                   textEl.addClass("present");
+                }
         }
         now();
 
-    }
+    //store input in local storage
+        
+
+
+    //save button stores input when clicked
+        $(saveButton).on("click", function() {
+            var userInput = textEl.val();
+            localStorage.setItem("userInput", "test");
+            
+          });
+
+    //load local storage data
+
+       // function initialize() {
+         //  var storedText = localStorage.getItem("userInput");
+         //   textEl.textContent = storedText;
+        //};
+    };
 }); 
+
+//initialize();
+
