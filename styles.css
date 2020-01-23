@@ -45,6 +45,35 @@ footer {
 .btn, .d-inline {
     width: 20% !important;
     }
+.jumbotron {
+    height: 18vh;
+    }
+.display-4 {
+    font-size: 2em;
+    }
+.lead {
+    font-size: 1em;
+    }
+#displayMoment {
+    font-size: 2em;
+    }
+}
+
+@media only screen and (max-width: 570px) {
+
+.jumbotron {
+    height: 18vh;
+    justify-content: center;
+    }
+.display-4 {
+    font-size: 1.5em;
+}
+.lead {
+    font-size: 1em;
+}
+#displayMoment {
+    font-size: 1em;
+}
 }
 
 .past {

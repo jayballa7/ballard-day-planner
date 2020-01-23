@@ -34,7 +34,7 @@ $(function() {
         let textEl = $('<textarea id="id' + i + '" name="name' + i +'" />');
         textEl.addClass("form-control");
         textEl.css("height", "12vh");
-        textEl.css("font-size", "xx-large");
+        textEl.css("font-size", "1.5em");
         let p = $("<p>");
         p = time[i + 8]; //starts at 9am
         hourDiv.append(p);
@@ -66,7 +66,7 @@ $(function() {
       }); 
   });
 
-//hour in the past, present or future
+//color-coded hour in the past, present or future
         function now () {
             let currentHour = moment().format("hA");
             let isafter = moment().isAfter(timeComp[i+8]);
