@@ -1,8 +1,8 @@
 //display current day
 (function() {
   
-  var currentDay = moment().format("LL");
-  var eDisplayMoment = document.getElementById("displayMoment");
+  let currentDay = moment().format("LL");
+  let eDisplayMoment = document.getElementById("displayMoment");
   eDisplayMoment.textContent = currentDay;
   
 })(); 
@@ -22,33 +22,55 @@ timeOneDay();
 
 //create content and insert on page
 $(function() {
-    var i=0;
+    let i=0;
     while (i < 9) {
         i++;
-        var inputEl = $("<div>");
+        let inputEl = $("<div>");
         inputEl.addClass("input-group");
-        var hourDiv = $("<div>");
+        let hourDiv = $("<div>");
         hourDiv.addClass("d-inline p-2 bg-dark text-white");    
         hourDiv.css("width", "10%");
         hourDiv.css("border-radius", "5%");
-        var textEl = $("<textarea>");
+        let textEl = $('<textarea id="id' + i + '" name="name' + i +'" />');
         textEl.addClass("form-control");
         textEl.css("height", "12vh");
         textEl.css("font-size", "xx-large");
-        var p = $("<p>");
-        p = time[i + 8];
+        let p = $("<p>");
+        p = time[i + 8]; //starts at 9am
         hourDiv.append(p);
-        var saveButton = $("<button>");
+        let saveButton = $('<button id="btn' + i + '" name="name' + i +'" />');  
         saveButton.addClass("btn btn-primary");
         saveButton.css("width", "10%")
         inputEl.append(hourDiv, textEl, saveButton);
         $(".container").append(inputEl);
 
+// save values to local storage when save button is clicked
+     $(".input-group").on("click", function(e) {
+      if (e.target && e.target.matches("button.btn")) {
+        $("textarea").each(function() {
+          var id = $(this).attr('id');
+          var value = $(this).val();
+          localStorage.setItem(id, value);
+        });
+      }
+    });   
+
+// load local storage values when page is refreshed
+    $(document).ready (function(){
+      $("textarea").each(function(){    
+          var id = $(this).attr('id');
+          var value = localStorage.getItem(id);
+  
+          $(this).val(value);
+  
+      }); 
+  });
+
 //hour in the past, present or future
         function now () {
-            var currentHour = moment().format("hA");
-            var isafter = moment().isAfter(timeComp[i+8]);
-            var isbefore = moment().isBefore(timeComp[i+8]);
+            let currentHour = moment().format("hA");
+            let isafter = moment().isAfter(timeComp[i+8]);
+            let isbefore = moment().isBefore(timeComp[i+8]);
             if (currentHour == time[i+8]) {
                 textEl.addClass("present");
             }
@@ -60,26 +82,5 @@ $(function() {
             }
         }
         now();
-
-    //store input in local storage
-        
-
-
-    //save button stores input when clicked
-        $(saveButton).on("click", function() {
-            var userInput = textEl.val();
-            localStorage.setItem("userInput", "test");
-            
-          });
-
-    //load local storage data
-
-       // function initialize() {
-         //  var storedText = localStorage.getItem("userInput");
-         //   textEl.textContent = storedText;
-        //};
     };
 }); 
-
-//initialize();
-
