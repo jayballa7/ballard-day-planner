@@ -1,5 +1,6 @@
 # Ballard-Day-Planner
 Work Day Scheduler
+https://jayballa7.github.io/ballard-day-planner/
 
 ## Table of contents
 * #general-info
